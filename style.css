@@ -18,6 +18,15 @@ button{
   border-radius: 4px;
   padding:5px 15px;
 }
+select{
+  width: 200px;
+  padding: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 0;
+  background-color: #a7c5e3;
+}
+
 .settings-btn{
   position: absolute;
   bottom: 30px;
@@ -33,4 +42,17 @@ button{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.settings.hide{
+  transform: translateY(-100%);
+}
+.container{
+  background-color: #34495e;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+  color: #fff;
+  position: relative;
+  text-align: center;
+  width: 500px;
 }
