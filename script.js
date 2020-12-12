@@ -14,7 +14,7 @@ const words = [
   'peace',
   'independent',
   'suit',
-  'likeble',
+  'likeable',
   'juice',
   'warlike',
   'sad',
@@ -37,6 +37,11 @@ let randomWord;
 let score = 0;
 // Init time
 let time = 10;
+//Focus on text on start / you can type directly in the input
+text.focus(); 
+
+// Start counting down
+const timeInterval = setInterval(updateTime, 1000);
 
 // Generate random word from array
 function getRandomWord() {
@@ -53,7 +58,26 @@ function updateScore(){
   score++;
   scoreEl.innerHTML = score;
 }
+// Game over
+function gameOver(){
+  endgameEl.innerHTML = `
+  <h1>Time ran out</h1>
+  <p>Your score is ${score}</p>
+  <button onclick="location.reload()">Reload</button>
+  `;
+  endgameEl.style.display = 'flex';
+}
+//Update time
+function updateTime(){
+  time--;
+  timeEl.innerHTML = time + 's';
 
+  if(time === 0) {
+    clearInterval(timeInterval); // zastavi se na 0(js funkce)
+   //end game
+    gameOver();
+  }
+}
 addWordToDom();
 // Event listeners
 
@@ -66,5 +90,6 @@ text.addEventListener('input', e => {
 
     //Clear
     e.target.value = '';
+    time += 2;
   }
 });
