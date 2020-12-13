@@ -37,6 +37,18 @@ let randomWord;
 let score = 0;
 // Init time
 let time = 10;
+// Set difficulty to value in ls or medium
+let difficulty =
+  localStorage.getItem('difficulty') !== null
+    ? localStorage.getItem('difficulty')
+    : 'medium';
+
+//set difficulty select value
+difficultySelect.value =
+  localStorage.getItem('difficulty') !== null
+    ? localStorage.getItem('difficulty')
+    : 'medium';
+
 //Focus on text on start / you can type directly in the input
 text.focus(); 
 
@@ -80,7 +92,7 @@ function updateTime(){
 }
 addWordToDom();
 // Event listeners
-
+// Typing
 text.addEventListener('input', e => {
   const insertedText = e.target.value;
   
@@ -90,6 +102,24 @@ text.addEventListener('input', e => {
 
     //Clear
     e.target.value = '';
-    time += 2;
+   if(difficulty === 'hard') {
+     time += 2;
+   } else if(difficulty === 'medium') {
+     time += 3;
+   } else {
+     time +=5;
+   }
+    
+    updateTime();
   }
+});
+
+// Settings btn click
+settingsBtn.addEventListener('click', () =>
+settings.classList.toggle('hide'));
+
+// Setting select
+settingsForm.addEventListener('change', e => {
+  difficulty = e.target.value;
+  localStorage.setItem('difficulty', difficulty);
 });
